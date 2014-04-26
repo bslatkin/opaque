@@ -1,5 +1,7 @@
 package opaque
 
+import "fmt"
+
 type Opaque interface {
 	GetNumber() int
 	nobodyOutsideCanImplementThis()
@@ -14,7 +16,7 @@ func (m *internalBasicType) GetNumber() int {
 func (m *internalBasicType) nobodyOutsideCanImplementThis() {}
 
 func NewBasic(number int) Opaque {
-	o := internalBasicType(5)
+	o := internalBasicType(number)
 	return &o
 }
 
@@ -30,4 +32,8 @@ func (m *internalStructType) nobodyOutsideCanImplementThis() {}
 
 func NewStruct(number int) Opaque {
 	return &internalStructType{number}
+}
+
+func DoSomethingWithOpaque(o Opaque) string {
+	return fmt.Sprintf("Hello opaque #%d", o.GetNumber())
 }
