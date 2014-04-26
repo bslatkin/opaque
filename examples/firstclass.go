@@ -16,4 +16,8 @@ func main() {
 	fmt.Printf("%#v on 10 is %d\n", f, f(10))
 	f = ThreeTimes
 	fmt.Printf("%#v on 5 is %d\n", f, f(5))
+	f = func(n int) int {
+		return 4 * n
+	}
+	fmt.Printf("%#v on 12 is %d\n", f, f(12))
 }
