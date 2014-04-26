@@ -6,13 +6,11 @@ import (
 	"net/http"
 )
 
-type MyHandler struct {}
-
-func (h *MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func MyHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Easiest webserver ever")
 }
 
 func main() {
-	http.Handle("/", &MyHandler{})
+	http.Handle("/", http.HandlerFunc(MyHandler))
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

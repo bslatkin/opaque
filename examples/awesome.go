@@ -16,9 +16,9 @@ func (m *MyType) IsAwesome() bool {
 
 func PrintItOut(a Awesome) {
 	if a.IsAwesome() {
-		fmt.Println("This is awesome")
+		fmt.Printf("%#v is awesome\n", a)
 	} else {
-		fmt.Println("This is not awesome")
+		fmt.Printf("%#v is not awesome\n", a)
 	}
 }
 
