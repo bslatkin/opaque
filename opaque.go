@@ -13,7 +13,9 @@ func (m *internalBasicType) GetNumber() int {
 	return int(*m)
 }
 
-func (m *internalBasicType) nobodyOutsideCanImplementThis() {}
+func (m *internalBasicType) nobodyOutsideCanImplementThis() {
+	fmt.Println("Called nobodyOutsideCanImplementThis")
+}
 
 func NewBasic(number int) Opaque {
 	o := internalBasicType(number)
@@ -36,4 +38,14 @@ func NewStruct(number int) Opaque {
 
 func DoSomethingWithOpaque(o Opaque) string {
 	return fmt.Sprintf("Hello opaque #%d", o.GetNumber())
+}
+
+func VerifyAndDoSomethingWithOpaque(o Opaque) (err error, result string) {
+	defer func() {
+		if recovered := recover(); recovered != nil {
+			err = recovered.(error)
+		}
+	}()
+	o.nobodyOutsideCanImplementThis()
+	return nil, DoSomethingWithOpaque(o)
 }
