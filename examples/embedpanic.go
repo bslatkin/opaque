@@ -24,9 +24,9 @@ func main() {
 	fmt.Println("Doing something with an opaque I get:", s)
 
 	err, s := opaque.VerifyAndDoSomethingWithOpaque(o)
-	fmt.Printf("Verifying %#v I get: %#v, %#v\n", o, err, s)
+	fmt.Printf("Verifying %#v I get: %v, %#v\n", o, err, s)
 
 	o = &MultiplyByX{Opaque: nil, x: 3}
 	err, s = opaque.VerifyAndDoSomethingWithOpaque(o)
-	fmt.Printf("Verifying %#v I get: %#v, %#v\n", o, err, s)
+	fmt.Printf("Verifying %#v I get: %v, %#v\n", o, err, s)
 }
