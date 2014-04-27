@@ -25,4 +25,8 @@ func main() {
 
 	err, s := opaque.VerifyAndDoSomethingWithOpaque(o)
 	fmt.Println("Verifying an opaque I get:", err, s)
+
+	o = &MultiplyByX{Opaque: nil, x: 3}
+	err, s = opaque.VerifyAndDoSomethingWithOpaque(o)
+	fmt.Println("Verifying a nil opaque I get:", err, s)
 }
